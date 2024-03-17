@@ -20,6 +20,14 @@ import { join } from 'path';
 // import { StripeModule } from 'nestjs-stripe';
 import { EncryptionModule } from './encryption/encryption/encryption.module';
 import { ReviewsModule } from './reviews/reviews.module';
+import { UserEntity } from './user/user.entity';
+import { Product } from './product/product.entity';
+import { Cart } from './cart/cart.entity';
+import { Order_Item } from './order_item/order_item.entity';
+import { Order } from './order/order.entity';
+import { Category } from './category/category.entity';
+import { Reviews } from './reviews/reviews.entity';
+import { Payment_Detail } from './payment_detail/payment_detail.entity';
 
 
 
@@ -32,8 +40,19 @@ import { ReviewsModule } from './reviews/reviews.module';
       username: "root",
       password: '',
       database: 'fcommerce',
-      autoLoadEntities: true,
-      synchronize: true,
+      autoLoadEntities: false,
+      synchronize: false,
+      entities: [
+        UserEntity,
+        Product,
+        Cart,
+        Order_Item,
+        Order,
+        Category,
+        Reviews,
+        Payment_Detail,
+
+      ]
     }),
     ServeStaticModule.forRoot({
       serveRoot: '/uploads/images',

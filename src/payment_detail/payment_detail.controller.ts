@@ -11,23 +11,23 @@ export class PaymentDetailController {
         private payment_Detail_Service: PaymentDetailService
     ) { }
 
-    @Get('session/:orderId')
-    async getStripSession(@Param('orderId', ParseIntPipe) orderId: number) {
-        const session = await this.payment_Detail_Service.checkoutSession(orderId)
-        return sendJson(true, "Session Successfull", session)
-    }
+    // @Get('session/:orderId')
+    // async getStripSession(@Param('orderId', ParseIntPipe) orderId: number) {
+    //     const session = await this.payment_Detail_Service.checkoutSession(orderId)
+    //     return sendJson(true, "Session Successfull", session)
+    // }
 
-    @Get('redirect')
-    async getStripeStatus(
-        @Query('sid') sid: string,
-        @Query('result') result: string,
-        @Query('paymentId') paymentId: string
-    ) {
-        console.log("Ye chala?")
-        // console.log("Payemnt Id:", paymentId)
-        const session = await this.payment_Detail_Service.stripeRedirect(sid, result, +paymentId)
-        return sendJson(true, "Redirect Succcessfull", session)
-    }
+    // @Get('redirect')
+    // async getStripeStatus(
+    //     @Query('sid') sid: string,
+    //     @Query('result') result: string,
+    //     @Query('paymentId') paymentId: string
+    // ) {
+    //     console.log("Ye chala?")
+    //     // console.log("Payemnt Id:", paymentId)
+    //     const session = await this.payment_Detail_Service.stripeRedirect(sid, result, +paymentId)
+    //     return sendJson(true, "Redirect Succcessfull", session)
+    // }
 
 
     @Post("cash-on-delivery")

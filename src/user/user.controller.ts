@@ -60,9 +60,9 @@ export class UserController {
         return sendJson(true, 'Otp validation', savedUser)
     }
 
-    @Post('sendmail')
-    async sendMail(@Body("email") email: string) {
-        return await this.userService.sendMail(email)
-    }
+    // @Post('sendmail')
+    // async sendMail(@Body("email") email: string) {
+    //     return await this.userService.sendMail(email)
+    // }
 
 }

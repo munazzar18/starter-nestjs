@@ -14,10 +14,10 @@ import { OrderItemModule } from './order_item/order_item.module';
 import { CartModule } from './cart/cart.module';
 import { PaymentDetailModule } from './payment_detail/payment_detail.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
-import { MailerModule } from '@nestjs-modules/mailer';
+// import { MailerModule } from '@nestjs-modules/mailer';
 import { ConfigModule } from '@nestjs/config';
 import { join } from 'path';
-import { StripeModule } from 'nestjs-stripe';
+// import { StripeModule } from 'nestjs-stripe';
 import { EncryptionModule } from './encryption/encryption/encryption.module';
 import { ReviewsModule } from './reviews/reviews.module';
 
@@ -45,19 +45,19 @@ import { ReviewsModule } from './reviews/reviews.module';
     ConfigModule.forRoot({
       envFilePath: '.env',
     }),
-    MailerModule.forRoot({
-      transport: {
-        host: "sandbox.smtp.mailtrap.io",
-        port: 2525,
-        auth: {
-          user: process.env.MAIL_USERNAME,
-          pass: process.env.MAIL_PASS
-        }
-      }
-    }),
-    StripeModule.forRoot({
-      apiKey: process.env.SECRET_KEY,
-    }),
+    // MailerModule.forRoot({
+    //   transport: {
+    //     host: "sandbox.smtp.mailtrap.io",
+    //     port: 2525,
+    //     auth: {
+    //       user: process.env.MAIL_USERNAME,
+    //       pass: process.env.MAIL_PASS
+    //     }
+    //   }
+    // }),
+    // StripeModule.forRoot({
+    //   apiKey: process.env.SECRET_KEY,
+    // }),
     MulterModule.register({
       dest: './uploads/images/',
     }),

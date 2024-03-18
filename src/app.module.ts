@@ -32,7 +32,7 @@ import { Payment_Detail } from "./payment_detail/payment_detail.entity";
     TypeOrmModule.forRoot({
       type: "mysql",
       host: process.env.MYSQL_HOST,
-      port: 3306,
+      port: +process.env.MYSQL_PORT,
       username: process.env.MYSQL_USERNAME,
       password: process.env.MYSQL_PASSWORD,
       database: process.env.MYSQL_DATABASE,
@@ -94,5 +94,5 @@ import { Payment_Detail } from "./payment_detail/payment_detail.entity";
   providers: [],
 })
 export class AppModule {
-  constructor(private datasource: DataSource) {}
+  constructor(private datasource: DataSource) { }
 }

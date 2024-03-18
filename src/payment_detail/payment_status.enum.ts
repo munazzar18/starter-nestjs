@@ -1,7 +1,7 @@
 enum Status {
-    Pending = 'pending',
-    Unpaid = 'unpaid',
-    Paid = 'paid',
-  }
+  Pending = "pending",
+  Unpaid = "unpaid",
+  Paid = "paid",
+}
 
-  export { Status }
+export { Status };

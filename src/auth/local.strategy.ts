@@ -4,21 +4,19 @@ import { Strategy } from "passport-local";
 import { AuthService } from "./auth.service";
 import { serializedUser } from "src/user/user.entity";
 
-
-
 @Injectable()
-export class LocalStrategy extends PassportStrategy(Strategy){
-    constructor(private authService: AuthService){
-        super ({
-            usernameField: 'email',
-        })
-    }
+export class LocalStrategy extends PassportStrategy(Strategy) {
+  constructor(private authService: AuthService) {
+    super({
+      usernameField: "email",
+    });
+  }
 
-async validate(email: string, password: string){
-    const user = await this.authService.validateUser(email, password)
-    if(!user){
-        throw new UnauthorizedException()
+  async validate(email: string, password: string) {
+    const user = await this.authService.validateUser(email, password);
+    if (!user) {
+      throw new UnauthorizedException();
     }
-    return new serializedUser(user)
-}
+    return new serializedUser(user);
+  }
 }

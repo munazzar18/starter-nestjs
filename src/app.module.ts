@@ -1,45 +1,41 @@
-import { Module } from '@nestjs/common';
-import { UserModule } from './user/user.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { AuthModule } from './auth/auth.module';
-import { PassportModule } from '@nestjs/passport';
-import { JwtModule } from '@nestjs/jwt';
-import { JwtConstants } from './constants/jwtConstants';
-import { DataSource } from 'typeorm';
-import { ProductModule } from './product/product.module';
-import { CategoryModule } from './category/category.module';
-import { MulterModule } from '@nestjs/platform-express';
-import { OrderModule } from './order/order.module';
-import { OrderItemModule } from './order_item/order_item.module';
-import { CartModule } from './cart/cart.module';
-import { PaymentDetailModule } from './payment_detail/payment_detail.module';
-import { ServeStaticModule } from '@nestjs/serve-static';
-// import { MailerModule } from '@nestjs-modules/mailer';
-import { ConfigModule } from '@nestjs/config';
-import { join } from 'path';
-// import { StripeModule } from 'nestjs-stripe';
-import { EncryptionModule } from './encryption/encryption/encryption.module';
-import { ReviewsModule } from './reviews/reviews.module';
-import { UserEntity } from './user/user.entity';
-import { Product } from './product/product.entity';
-import { Cart } from './cart/cart.entity';
-import { Order_Item } from './order_item/order_item.entity';
-import { Order } from './order/order.entity';
-import { Category } from './category/category.entity';
-import { Reviews } from './reviews/reviews.entity';
-import { Payment_Detail } from './payment_detail/payment_detail.entity';
-
-
+import { Module } from "@nestjs/common";
+import { UserModule } from "./user/user.module";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { AuthModule } from "./auth/auth.module";
+import { PassportModule } from "@nestjs/passport";
+import { JwtModule } from "@nestjs/jwt";
+import { JwtConstants } from "./constants/jwtConstants";
+import { DataSource } from "typeorm";
+import { ProductModule } from "./product/product.module";
+import { CategoryModule } from "./category/category.module";
+import { MulterModule } from "@nestjs/platform-express";
+import { OrderModule } from "./order/order.module";
+import { OrderItemModule } from "./order_item/order_item.module";
+import { CartModule } from "./cart/cart.module";
+import { PaymentDetailModule } from "./payment_detail/payment_detail.module";
+import { ServeStaticModule } from "@nestjs/serve-static";
+import { ConfigModule } from "@nestjs/config";
+import { join } from "path";
+import { EncryptionModule } from "./encryption/encryption/encryption.module";
+import { ReviewsModule } from "./reviews/reviews.module";
+import { UserEntity } from "./user/user.entity";
+import { Product } from "./product/product.entity";
+import { Cart } from "./cart/cart.entity";
+import { Order_Item } from "./order_item/order_item.entity";
+import { Order } from "./order/order.entity";
+import { Category } from "./category/category.entity";
+import { Reviews } from "./reviews/reviews.entity";
+import { Payment_Detail } from "./payment_detail/payment_detail.entity";
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: "mysql",
-      host: "localhost",
+      host: process.env.MYSQL_HOST,
       port: 3306,
-      username: "root",
-      password: '',
-      database: 'fcommerce',
+      username: process.env.MYSQL_USERNAME,
+      password: process.env.MYSQL_PASSWORD,
+      database: process.env.MYSQL_DATABASE,
       autoLoadEntities: false,
       synchronize: false,
       entities: [
@@ -51,18 +47,17 @@ import { Payment_Detail } from './payment_detail/payment_detail.entity';
         Category,
         Reviews,
         Payment_Detail,
-
-      ]
+      ],
     }),
     ServeStaticModule.forRoot({
-      serveRoot: '/uploads/images',
-      rootPath: join(__dirname, '..', 'uploads', 'images'),
+      serveRoot: "/uploads/images",
+      rootPath: join(__dirname, "..", "uploads", "images"),
       serveStaticOptions: {
         index: false,
       },
     }),
     ConfigModule.forRoot({
-      envFilePath: '.env',
+      envFilePath: ".env",
     }),
     // MailerModule.forRoot({
     //   transport: {
@@ -78,13 +73,13 @@ import { Payment_Detail } from './payment_detail/payment_detail.entity';
     //   apiKey: process.env.SECRET_KEY,
     // }),
     MulterModule.register({
-      dest: './uploads/images/',
+      dest: "./uploads/images/",
     }),
     UserModule,
     AuthModule,
     PassportModule,
     JwtModule.register({
-      secret: JwtConstants.secret
+      secret: JwtConstants.secret,
     }),
     ProductModule,
     CategoryModule,
@@ -99,5 +94,5 @@ import { Payment_Detail } from './payment_detail/payment_detail.entity';
   providers: [],
 })
 export class AppModule {
-  constructor(private datasource: DataSource) { }
+  constructor(private datasource: DataSource) {}
 }

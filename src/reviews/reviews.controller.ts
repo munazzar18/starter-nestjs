@@ -1,22 +1,17 @@
-import { Body, Controller, Post, Request, UseGuards } from '@nestjs/common';
-import { ReviewsService } from './reviews.service';
-import { ReviewDto } from './reviewDto.dto';
-import { AuthGuard } from 'src/auth/auth.guard';
+import { Body, Controller, Post, Request, UseGuards } from "@nestjs/common";
+import { ReviewsService } from "./reviews.service";
+import { ReviewDto } from "./reviewDto.dto";
+import { AuthGuard } from "src/auth/auth.guard";
 
-@Controller('reviews')
+@Controller("reviews")
 export class ReviewsController {
-    constructor(
-        private reviewService: ReviewsService
-    ) { }
+  constructor(private reviewService: ReviewsService) {}
 
-    @UseGuards(AuthGuard)
-    @Post()
-    async create(@Body() reviewDto: ReviewDto, @Request() req) {
-        const user = req.user
-        const review = await this.reviewService.create(reviewDto, user)
-        return review
-    }
-
-
-
+  @UseGuards(AuthGuard)
+  @Post()
+  async create(@Body() reviewDto: ReviewDto, @Request() req) {
+    const user = req.user;
+    const review = await this.reviewService.create(reviewDto, user);
+    return review;
+  }
 }

@@ -1,10 +1,9 @@
 import { IsNotEmpty } from "class-validator";
 
 export class createOrderDto {
+  @IsNotEmpty()
+  orderItemIds: number[];
 
-    @IsNotEmpty()
-    orderItemIds: number[]
-
-    @IsNotEmpty()
-    quantities: number[]
+  @IsNotEmpty()
+  quantities: number[];
 }

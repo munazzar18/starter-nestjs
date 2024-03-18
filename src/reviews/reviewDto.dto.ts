@@ -1,10 +1,10 @@
 import { IsNumber } from "class-validator";
 
 export class ReviewDto {
-    @IsNumber()
-    rating: number;
+  @IsNumber()
+  rating: number;
 
-    review: string;
+  review: string;
 
-    orderId: number;
+  orderId: number;
 }
